@@ -130,10 +130,21 @@
             <v-card class="pt-10">
               <v-row>
                 <v-col lg="6">
-                  <label class="pl-10">Ordenar Por:</label>
+                  <v-row><label class="pl-10">Ordenar Por:</label></v-row>
+                  <v-row class="pl-12">
+                    <v-radio-group v-model="radioGroup">
+                      <v-radio :label="`Asc`" :value="1"></v-radio>
+                      <v-radio :label="`Des`" :value="2"></v-radio>
+                    </v-radio-group>
+                  </v-row>
                 </v-col>
-                <v-col lg="6">
-                  <v-select :items="items" label="Opcion" outlined></v-select>
+                <v-col lg="5">
+                  <v-select
+                    :items="items"
+                    label="Opcion"
+                    v-model="opcion"
+                    outlined
+                  ></v-select>
                 </v-col>
               </v-row>
             </v-card>
@@ -143,11 +154,10 @@
           <!-- productos de la pagina -->
           <v-col
             lg="3"
-            v-for="(producto, key) in selectedItems"
+            v-for="(producto, key) in orderarProductos"
             :key="key"
             v-show="switch1 === producto.nuevo"
           >
-            <!-- switch1 === producto.nuevo &&  -->
             <v-card class="text-center">
               <v-img
                 height="250"
@@ -179,10 +189,7 @@
             <span>Articulos por pagina</span>
             <v-select
               :items="articulos"
-              item-text="state"
-              label="12"
-              persistent-hint
-              return-object
+              v-model="e1"
               single-line
               style="max-width: 64px"
             >
@@ -201,6 +208,7 @@ export default {
   name: "Home",
   data() {
     return {
+      // switch de nuevo producto
       switch1: false,
 
       // marcas de celulares
@@ -217,15 +225,25 @@ export default {
       min: 0,
       max: 1000,
 
+      // valor de asc y des
+      radioGroup: 0,
+
       // items de Ordenar por
       items: ["precio", "fecha", "nombre"],
+
+      opcion: "",
 
       // productos de la base de datos
       productos: [],
 
+      // #pagina del pagination
       page: 1,
 
-      articulos: [{ state: "12" }, { state: "25" }, { state: "50" }],
+      // #articulos por pagina default
+      e1: "12",
+
+      // articulos por pagina
+      articulos: ["12", "25", "50"],
     };
   },
 
@@ -269,6 +287,74 @@ export default {
           );
         }
       }, this);
+    },
+
+    // ordenar Productos
+    orderarProductos: function () {
+      let copia = this.selectedItems;
+      // precio Asc
+      if (this.radioGroup === 1 && this.opcion === "precio") {
+        return copia.sort((a, b) => {
+          if (a.precio === b.precio) {
+            return 0;
+          }
+
+          if (a.precio < b.precio) {
+            return -1;
+          }
+
+          if (a.precio > b.precio) {
+            return 1;
+          }
+        });
+        // precio Des
+      } else if (this.radioGroup === 2 && this.opcion === "precio") {
+        return copia.sort((a, b) => {
+          if (a.precio === b.precio) {
+            return 0;
+          }
+
+          if (a.precio < b.precio) {
+            return 1;
+          }
+
+          if (a.precio > b.precio) {
+            return -1;
+          }
+        });
+        // nombre Asc
+      } else if (this.radioGroup === 1 && this.opcion === "nombre") {
+        return copia.sort((a, b) => {
+          if (a.titulo.toLowerCase() === b.titulo.toLowerCase()) {
+            return 0;
+          }
+
+          if (a.titulo.toLowerCase() < b.titulo.toLowerCase()) {
+            return -1;
+          }
+
+          if (a.titulo.toLowerCase() > b.titulo.toLowerCase()) {
+            return 1;
+          }
+        });
+        // nombre Des
+      } else if (this.radioGroup === 2 && this.opcion === "nombre") {
+        return copia.sort((a, b) => {
+          if (a.titulo.toLowerCase() === b.titulo.toLowerCase()) {
+            return 0;
+          }
+
+          if (a.titulo.toLowerCase() < b.titulo.toLowerCase()) {
+            return 1;
+          }
+
+          if (a.titulo.toLowerCase() > b.titulo.toLowerCase()) {
+            return -1;
+          }
+        });
+      } else {
+        return copia;
+      }
     },
   },
 
