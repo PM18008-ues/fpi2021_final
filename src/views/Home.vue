@@ -167,6 +167,8 @@
                 <h2 class="black--text">${{ producto.precio }}</h2>
               </v-card-text>
               <span>{{ producto.titulo }}</span>
+              <br />
+              <span>{{ producto.fecha }}</span>
             </v-card>
           </v-col>
         </v-row>
@@ -352,6 +354,36 @@ export default {
             return -1;
           }
         });
+        // fecha Asc
+      } else if (this.radioGroup === 1 && this.opcion === "fecha") {
+        return copia.sort((a, b) => {
+          if (new Date(a.fecha) === new Date(b.fecha)) {
+            return 0;
+          }
+
+          if (new Date(a.fecha) < new Date(b.fecha)) {
+            return -1;
+          }
+
+          if (new Date(a.fecha) > new Date(b.fecha)) {
+            return 1;
+          }
+        });
+        // fecha Des
+      } else if (this.radioGroup === 2 && this.opcion === "fecha") {
+        return copia.sort((a, b) => {
+          if (new Date(a.fecha) === new Date(b.fecha)) {
+            return 0;
+          }
+
+          if (new Date(a.fecha) < new Date(b.fecha)) {
+            return 1;
+          }
+
+          if (new Date(a.fecha) > new Date(b.fecha)) {
+            return -1;
+          }
+        });
       } else {
         return copia;
       }
@@ -363,3 +395,4 @@ export default {
   },
 };
 </script>
+/
