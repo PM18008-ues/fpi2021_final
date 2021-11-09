@@ -23,13 +23,26 @@
 
       <v-btn text href="/">Inicio</v-btn>
       <v-btn text href="/">Estadisticas</v-btn>
+      <v-btn icon @click="openModal"
+        ><v-icon large>mdi-plus-circle</v-icon></v-btn
+      >
+      <v-btn text><v-icon large>mdi-cart</v-icon></v-btn>
     </v-app-bar>
+    <Modal ref="modal"> </Modal>
   </v-container>
 </template>
 
 <script>
+import Modal from "./Modal.vue";
 export default {
-  name: "Navbar",
+  data() {},
+  components: { Modal },
+
+  methods: {
+    openModal() {
+      this.$refs.modal.dialog = true;
+    }, //executing the show method of child
+  },
 };
 </script>
 

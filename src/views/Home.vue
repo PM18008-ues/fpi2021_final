@@ -388,6 +388,7 @@ export default {
         return copia;
       }
     },
+    // .toLocaleDateString() DD/MM/YYYY
   },
 
   firestore: {
