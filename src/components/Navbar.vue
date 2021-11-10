@@ -35,7 +35,6 @@
 <script>
 import Modal from "./Modal.vue";
 export default {
-  data() {},
   components: { Modal },
 
   methods: {

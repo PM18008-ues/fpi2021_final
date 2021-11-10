@@ -64,6 +64,16 @@
           <v-card-text>
             <v-checkbox
               v-model="pantallas"
+              value="7.0"
+              :label="`7.0`"
+            ></v-checkbox>
+            <v-checkbox
+              v-model="pantallas"
+              value="6.5"
+              :label="`6.5`"
+            ></v-checkbox>
+            <v-checkbox
+              v-model="pantallas"
               value="6.0"
               :label="`6.0`"
             ></v-checkbox>
@@ -388,7 +398,6 @@ export default {
         return copia;
       }
     },
-    // .toLocaleDateString() DD/MM/YYYY
   },
 
   firestore: {
