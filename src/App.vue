@@ -1,8 +1,8 @@
 <template>
   <v-app>
-    <NavBar />
+    <NavBar @busqueda="newCad = $event" />
     <v-main>
-      <router-view />
+      <router-view :busqueda="newCad" />
     </v-main>
   </v-app>
 </template>
@@ -14,8 +14,11 @@ export default {
   components: {
     NavBar,
   },
-  data: () => ({
+  data() {
     //
-  }),
+    return {
+      newCad: "",
+    };
+  },
 };
 </script>

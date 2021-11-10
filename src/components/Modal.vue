@@ -28,54 +28,51 @@
                     </v-radio-group>
                   </v-row>
                   <v-row class="pb-8">
-                    <label class="pr-4 pt-5">Marca:</label>
                     <v-text-field
                       style="max-width: 200px"
                       :rules="rules"
                       hide-details="auto"
                       solo
                       v-model="marca"
-                    ></v-text-field>
+                      ><label slot="prepend">Marca:</label>
+                    </v-text-field>
                   </v-row>
                   <v-row class="pb-1">
-                    <label class="pr-3 pt-5">Modelo:</label>
-                    <v-text-field style="max-width: 200px" solo></v-text-field>
+                    <v-text-field style="max-width: 200px" solo
+                      ><label slot="prepend">Modelo:</label>
+                    </v-text-field>
                   </v-row>
                   <v-row class="pb-8">
-                    <label class="pr-3 pt-5">Pantalla:</label>
                     <v-text-field
                       style="max-width: 200px"
                       :rules="rules"
                       hide-details="auto"
                       solo
                       v-model="modelo"
-                    ></v-text-field>
-                    <label class="pl-3 pt-5">Pulgadas</label>
+                      ><label slot="prepend">Pantalla:</label
+                      ><label slot="append">Pulgadas</label>
+                    </v-text-field>
                   </v-row>
                   <v-row class="pb-4">
-                    <label class="pr-3 pt-5">Sistema:</label>
                     <v-select
                       :items="sistemas"
                       style="max-width: 200px"
                       solo
                       v-model="sistema"
-                    ></v-select>
+                      ><label slot="prepend">Sistema:</label>
+                    </v-select>
                   </v-row>
                   <v-row class="pb-1">
-                    <label class="pr-7 pt-5">ROM:</label>
-                    <v-text-field
-                      style="max-width: 200px"
-                      solo
-                      v-model="rom"
-                    ></v-text-field>
+                    <v-text-field style="max-width: 200px" solo v-model="rom"
+                      ><label slot="prepend">ROM:</label>
+                      <label slot="append">GB</label>
+                    </v-text-field>
                   </v-row>
                   <v-row class="pb-1">
-                    <label class="pr-7 pt-5">RAM:</label>
-                    <v-text-field
-                      style="max-width: 200px"
-                      solo
-                      v-model="ram"
-                    ></v-text-field>
+                    <v-text-field style="max-width: 200px" solo v-model="ram">
+                      <label slot="prepend">RAM:</label
+                      ><label slot="append">GB</label>
+                    </v-text-field>
                   </v-row>
                 </v-card-text>
               </v-card>
@@ -99,25 +96,26 @@
               </v-row>
               <!-- Input vendedor -->
               <v-row class="pb-8">
-                <label class="pr-7 pt-5">Vendedor:</label>
                 <v-text-field
                   style="max-width: 50%"
                   :rules="rules"
                   hide-details="auto"
                   solo
                   v-model="vendedor"
-                ></v-text-field>
+                  ><label slot="prepend">Vendedor:</label>
+                </v-text-field>
               </v-row>
               <!-- input telefono -->
               <v-row class="pb-8">
-                <label class="pr-7 pt-5">Telefono:</label>
                 <v-text-field
                   style="max-width: 40%"
                   :rules="rules"
                   hide-details="auto"
+                  label="0000-0000"
                   solo
                   v-model="telefono"
-                ></v-text-field>
+                  ><label slot="prepend">Telefono:</label>
+                </v-text-field>
               </v-row>
               <!-- textarea descripcion -->
               <v-row>
@@ -145,7 +143,9 @@
                   label="$00.00"
                   solo
                   v-model="precio"
-                ></v-text-field>
+                >
+                  <label slot="prepend">$</label>
+                </v-text-field>
               </v-row>
             </v-col>
           </v-row>

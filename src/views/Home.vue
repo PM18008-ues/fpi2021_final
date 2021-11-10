@@ -164,7 +164,7 @@
           <!-- productos de la pagina -->
           <v-col
             lg="3"
-            v-for="(producto, key) in orderarProductos"
+            v-for="(producto, key) in buscarProductos"
             :key="key"
             v-show="switch1 === producto.nuevo"
           >
@@ -208,6 +208,7 @@
             </v-select>
           </v-col>
         </v-row>
+        <v-btn @click="buscarProducto">cadena</v-btn>
       </v-col>
     </v-row>
   </v-container>
@@ -218,6 +219,7 @@ import { db } from "../db";
 
 export default {
   name: "Home",
+
   data() {
     return {
       // switch de nuevo producto
@@ -260,6 +262,7 @@ export default {
   },
 
   methods: {},
+  props: ["busqueda"],
   computed: {
     // filtro por categorias
     selectedItems: function () {
@@ -303,7 +306,7 @@ export default {
 
     // ordenar Productos
     orderarProductos: function () {
-      let copia = this.selectedItems;
+      let copia = this.selectedItems.slice();
       // precio Asc
       if (this.radioGroup === 1 && this.opcion === "precio") {
         return copia.sort((a, b) => {
@@ -398,6 +401,20 @@ export default {
         return copia;
       }
     },
+    buscarProductos: function () {
+      if (this.busqueda.length === 0) {
+        return this.orderarProductos.slice();
+      } else {
+        return this.productos.filter((item) => {
+          let x = item.titulo
+            .toLowerCase()
+            .indexOf(this.busqueda.toLowerCase());
+          return x >= 0;
+        });
+      }
+      // console.log(this.busqueda);
+      // return "";
+    },
   },
 
   firestore: {
@@ -405,4 +422,3 @@ export default {
   },
 };
 </script>
-/

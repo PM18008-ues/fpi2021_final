@@ -10,11 +10,12 @@
         ></v-toolbar-title
       >
 
-      <v-btn icon>
+      <v-btn icon @click="buscar">
         <v-icon class="pl-6">mdi-magnify</v-icon>
       </v-btn>
       <v-text-field
         label="Search"
+        v-model="cadena"
         solo-inverted
         hide-details
         class="pl-10 pr-10 ml-4"
@@ -35,12 +36,24 @@
 <script>
 import Modal from "./Modal.vue";
 export default {
+  data() {
+    return {
+      // cadena de busqueda
+      cadena: "",
+    };
+  },
   components: { Modal },
 
   methods: {
     openModal() {
       this.$refs.modal.dialog = true;
+      console.log(this.cadena);
     }, //executing the show method of child
+
+    // mando el valor de la cadena al Padre
+    buscar() {
+      this.$emit("busqueda", this.cadena);
+    },
   },
 };
 </script>
