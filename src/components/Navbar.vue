@@ -17,7 +17,15 @@
         hide-details
         class="pl-10 pr-10 ml-4"
         @keyup.capture="buscar"
-      ></v-text-field>
+      >
+        <v-icon
+          slot="append"
+          color="black"
+          @click="borrar"
+          v-show="cadena.length > 0"
+          >mdi-close</v-icon
+        >
+      </v-text-field>
       <v-spacer class="hidden-sm-and-down"></v-spacer>
 
       <v-btn text href="/">Inicio</v-btn>
@@ -51,6 +59,10 @@ export default {
     // mando el valor de la cadena al Padre
     buscar() {
       this.$emit("busqueda", this.cadena);
+    },
+
+    borrar() {
+      this.cadena = "";
     },
   },
 };
