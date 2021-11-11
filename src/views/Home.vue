@@ -179,6 +179,7 @@
               <span>{{ producto.titulo }}</span>
               <br />
               <span>{{ producto.fecha }}</span>
+              <v-btn :to="'/Anuncio/' + producto.id">ver</v-btn>
             </v-card>
           </v-col>
         </v-row>
@@ -208,7 +209,6 @@
             </v-select>
           </v-col>
         </v-row>
-        <v-btn @click="buscarProducto">cadena</v-btn>
       </v-col>
     </v-row>
   </v-container>
