@@ -10,16 +10,12 @@
         ></v-toolbar-title
       >
 
-      <v-btn icon @click="buscar">
-        <v-icon class="pl-6">mdi-magnify</v-icon>
-      </v-btn>
       <v-text-field
         label="Search"
         v-model="cadena"
         solo-inverted
         hide-details
         class="pl-10 pr-10 ml-4"
-        @keyup.enter="buscar({ data: search, path: $route.path })"
         @keyup.capture="buscar"
       ></v-text-field>
       <v-spacer class="hidden-sm-and-down"></v-spacer>

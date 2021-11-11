@@ -5,7 +5,7 @@
       <v-col lg="3">
         <!-- switch de nuevo -->
         <v-switch v-model="switch1" :label="`Nuevo`"></v-switch>
-
+        {{ switch1 }}
         <!-- marcas -->
         <v-card>
           <v-card-title>Marca</v-card-title>
@@ -162,12 +162,7 @@
         </v-row>
         <v-row class="pt-10">
           <!-- productos de la pagina -->
-          <v-col
-            lg="3"
-            v-for="(producto, key) in buscarProductos"
-            :key="key"
-            v-show="switch1 === producto.nuevo"
-          >
+          <v-col lg="3" v-for="(producto, key) in buscarProductos" :key="key">
             <v-card class="text-center">
               <v-img
                 height="250"
@@ -179,6 +174,8 @@
               <span>{{ producto.titulo }}</span>
               <br />
               <span>{{ producto.fecha }}</span>
+              <br />
+              <span>{{ producto.nuevo }}</span>
               <v-btn :to="'/Anuncio/' + producto.id">ver</v-btn>
             </v-card>
           </v-col>
@@ -264,7 +261,7 @@ export default {
   methods: {},
   props: ["busqueda"],
   computed: {
-    // filtro por categorias
+    // filtro por categorias y rango de precios
     selectedItems: function () {
       return this.productos.filter(function (newProductos) {
         if (
@@ -273,32 +270,52 @@ export default {
           this.sistemas.length > 0
         ) {
           if ((this.marcas.length > 0) & (this.pantallas.length > 0)) {
+            console.log("opc1");
             return (
               this.marcas.includes(newProductos.marca) &
-              this.pantallas.includes(newProductos.pantalla)
+              this.pantallas.includes(newProductos.pantalla) &
+              (this.switch1 === newProductos.nuevo) &
+              ((newProductos.precio >= this.range[0]) &
+                (newProductos.precio <= this.range[1]))
             );
           } else if ((this.marcas.length > 0) & (this.sistemas.length > 0)) {
+            console.log("opc2");
             return (
               this.marcas.includes(newProductos.marca) &
-              this.sistemas.includes(newProductos.sistema)
+              this.sistemas.includes(newProductos.sistema) &
+              (this.switch1 === newProductos.nuevo) &
+              ((newProductos.precio >= this.range[0]) &
+                (newProductos.precio <= this.range[1]))
             );
           } else if ((this.sistemas.length > 0) & (this.pantallas.length > 0)) {
+            console.log("opc3");
             return (
               this.sistemas.includes(newProductos.sistema) &
-              this.pantallas.includes(newProductos.pantalla)
+              this.pantallas.includes(newProductos.pantalla) &
+              (this.switch1 === newProductos.nuevo) &
+              ((newProductos.precio >= this.range[0]) &
+                (newProductos.precio <= this.range[1]))
             );
           } else {
+            console.log("opc4");
             return (
-              this.marcas.includes(newProductos.marca) ||
-              this.sistemas.includes(newProductos.sistema) ||
-              this.pantallas.includes(newProductos.pantalla)
+              (this.marcas.includes(newProductos.marca) ||
+                this.sistemas.includes(newProductos.sistema) ||
+                this.pantallas.includes(newProductos.pantalla)) &
+              (this.switch1 === newProductos.nuevo) &
+              ((newProductos.precio >= this.range[0]) &
+                (newProductos.precio <= this.range[1]))
             );
           }
         } else {
+          console.log("opc5");
           return (
             !this.marcas.includes(newProductos.marca) &
             !this.sistemas.includes(newProductos.sistema) &
-            !this.pantallas.includes(newProductos.pantalla)
+            !this.pantallas.includes(newProductos.pantalla) &
+            (this.switch1 === newProductos.nuevo) &
+            ((newProductos.precio >= this.range[0]) &
+              (newProductos.precio <= this.range[1]))
           );
         }
       }, this);
