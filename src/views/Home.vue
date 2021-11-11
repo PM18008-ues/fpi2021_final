@@ -175,7 +175,6 @@
               <br />
               <span>{{ producto.fecha }}</span>
               <br />
-              <span>{{ producto.nuevo }}</span>
               <v-btn :to="'/Anuncio/' + producto.id">ver</v-btn>
             </v-card>
           </v-col>
@@ -251,10 +250,10 @@ export default {
       page: 1,
 
       // #articulos por pagina default
-      e1: "12",
+      e1: 1,
 
       // articulos por pagina
-      articulos: ["12", "25", "50"],
+      articulos: [1, 2, 3, 4, 5],
     };
   },
 
@@ -270,7 +269,6 @@ export default {
           this.sistemas.length > 0
         ) {
           if ((this.marcas.length > 0) & (this.pantallas.length > 0)) {
-            console.log("opc1");
             return (
               this.marcas.includes(newProductos.marca) &
               this.pantallas.includes(newProductos.pantalla) &
@@ -279,7 +277,6 @@ export default {
                 (newProductos.precio <= this.range[1]))
             );
           } else if ((this.marcas.length > 0) & (this.sistemas.length > 0)) {
-            console.log("opc2");
             return (
               this.marcas.includes(newProductos.marca) &
               this.sistemas.includes(newProductos.sistema) &
@@ -288,7 +285,6 @@ export default {
                 (newProductos.precio <= this.range[1]))
             );
           } else if ((this.sistemas.length > 0) & (this.pantallas.length > 0)) {
-            console.log("opc3");
             return (
               this.sistemas.includes(newProductos.sistema) &
               this.pantallas.includes(newProductos.pantalla) &
@@ -297,7 +293,6 @@ export default {
                 (newProductos.precio <= this.range[1]))
             );
           } else {
-            console.log("opc4");
             return (
               (this.marcas.includes(newProductos.marca) ||
                 this.sistemas.includes(newProductos.sistema) ||
@@ -308,7 +303,6 @@ export default {
             );
           }
         } else {
-          console.log("opc5");
           return (
             !this.marcas.includes(newProductos.marca) &
             !this.sistemas.includes(newProductos.sistema) &
@@ -321,9 +315,21 @@ export default {
       }, this);
     },
 
+    // paginar productos
+    paginarProductos: function () {
+      let copia = this.selectedItems.slice();
+      let nuevo = [];
+      for (let i = (this.page - 1) * this.e1; i < this.page * this.e1; i++) {
+        if (i < copia.length) {
+          nuevo.push(copia[i]);
+        }
+      }
+      return nuevo;
+    },
+
     // ordenar Productos
     orderarProductos: function () {
-      let copia = this.selectedItems.slice();
+      let copia = this.paginarProductos.slice();
       // precio Asc
       if (this.radioGroup === 1 && this.opcion === "precio") {
         return copia.sort((a, b) => {
@@ -418,6 +424,8 @@ export default {
         return copia;
       }
     },
+
+    // buscar productos segun el titulo
     buscarProductos: function () {
       if (this.busqueda.length === 0) {
         return this.orderarProductos.slice();
@@ -429,8 +437,6 @@ export default {
           return x >= 0;
         });
       }
-      // console.log(this.busqueda);
-      // return "";
     },
   },
 
