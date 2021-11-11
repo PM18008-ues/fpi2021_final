@@ -182,7 +182,11 @@
         <v-row>
           <v-col lg="8">
             <div class="text-center">
-              <v-pagination v-model="page" :length="6"></v-pagination>
+              <v-pagination
+                v-model="page"
+                :length="15"
+                :total-visible="7"
+              ></v-pagination>
             </div>
           </v-col>
           <v-col
@@ -250,10 +254,10 @@ export default {
       page: 1,
 
       // #articulos por pagina default
-      e1: 1,
+      e1: 5,
 
       // articulos por pagina
-      articulos: [1, 2, 3, 4, 5],
+      articulos: [5, 10, 15, 20, 25],
     };
   },
 
