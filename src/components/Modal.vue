@@ -8,7 +8,7 @@
     >
       <v-card>
         <v-toolbar dark color="primary">
-          <v-btn icon dark @click="dialog = false">
+          <v-btn icon dark @click="cancelar()">
             <v-icon>mdi-close</v-icon>
           </v-btn>
           <v-toolbar-title>Nuevo Anuncio</v-toolbar-title>
@@ -169,7 +169,7 @@
                 >
               </v-row>
               <v-row>
-                <v-btn @click="dialog = false" color="blue" class="white--text"
+                <v-btn @click="cancelar()" color="blue" class="white--text"
                   ><v-icon color="white">mdi-close-circle</v-icon
                   >Cancelar</v-btn
                 >
@@ -283,6 +283,32 @@ export default {
       }
     },
 
+    cancelar() {
+      // formatear el modal
+      (this.titulo = ""),
+        (this.nuevo = true),
+        (this.marca = ""),
+        (this.modelo = ""),
+        (this.pantalla = null),
+        (this.sistema = "Android"),
+        (this.rom = 0),
+        (this.ram = 0),
+        (this.vendedor = ""),
+        (this.telefono = ""),
+        (this.descripcion = ""),
+        (this.precio = null),
+        (this.hoy = new Date().toLocaleDateString()),
+        (this.radioGroup = 1),
+        (this.file = null),
+        (this.downloadURL = ""),
+        (this.fileName = ""),
+        (this.imagenes = []),
+        (this.imagenesUrl = []);
+
+      // cerrar ventana
+      this.dialog = false;
+    },
+
     agregar() {
       let newPro = true;
 
@@ -309,30 +335,8 @@ export default {
         imagenes: this.imagenesUrl,
       };
 
-      // cerrar ventana
-      this.dialog = false;
       db.collection("productos").add(newProduc);
-
-      // formatear el modal
-      (this.titulo = ""),
-        (this.nuevo = true),
-        (this.marca = ""),
-        (this.modelo = ""),
-        (this.pantalla = null),
-        (this.sistema = "Android"),
-        (this.rom = 0),
-        (this.ram = 0),
-        (this.vendedor = ""),
-        (this.telefono = ""),
-        (this.descripcion = ""),
-        (this.precio = null),
-        (this.hoy = new Date().toLocaleDateString()),
-        (this.radioGroup = 1),
-        (this.file = null),
-        (this.downloadURL = ""),
-        (this.fileName = ""),
-        (this.imagenes = []),
-        (this.imagenesUrl = []);
+      this.cancelar();
     },
 
     upload() {
