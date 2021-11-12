@@ -167,17 +167,43 @@
         <v-row class="pt-10">
           <!-- productos de la pagina -->
           <v-col lg="3" v-for="(producto, key) in buscarProductos" :key="key">
-            <v-card class="text-center">
-              <v-img height="250" :src="producto.imagenes[0]"></v-img>
-              <v-card-text>
-                <h2 class="black--text">${{ producto.precio }}</h2>
-              </v-card-text>
-              <span>{{ producto.titulo }}</span>
-              <br />
-              <span>{{ producto.fecha }}</span>
-              <br />
-              <v-btn :to="'/Anuncio/' + producto.id">ver</v-btn>
-            </v-card>
+            <v-hover v-slot:default="{ hover }">
+              <v-card class="text-center" color="grey lighten-4">
+                <v-img height="250px" :src="producto.imagenes[0]">
+                  <v-expand-transition>
+                    <div
+                      v-if="hover"
+                      class="
+                        d-flex
+                        justify-center
+                        align-center
+                        text-center
+                        transition-fast-in-fast-out
+                        white
+                        darken-2
+                        v-card--reveal
+                        display-3
+                        white--text
+                      "
+                      style="height: 100%; opacity: 0.9"
+                    >
+                      <v-btn
+                        v-if="hover"
+                        :to="'/Anuncio/' + producto.id"
+                        color="primary"
+                        >Detalles</v-btn
+                      >
+                    </div>
+                  </v-expand-transition>
+                </v-img>
+                <v-card-text>
+                  <h2 class="black--text">${{ producto.precio }}</h2>
+                </v-card-text>
+                <span>{{ producto.titulo }}</span>
+                <br />
+                <span>{{ producto.fecha }}</span>
+              </v-card>
+            </v-hover>
           </v-col>
         </v-row>
         <v-row>
@@ -450,3 +476,4 @@ export default {
   },
 };
 </script>
+
