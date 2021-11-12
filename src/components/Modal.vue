@@ -304,6 +304,7 @@ export default {
         (this.fileName = ""),
         (this.imagenes = []),
         (this.imagenesUrl = []);
+      this.borrado = false;
 
       // cerrar ventana
       this.dialog = false;
@@ -329,7 +330,7 @@ export default {
         vendedor: this.vendedor,
         telefono: this.telefono,
         descripcion: this.descripcion,
-        precio: this.precio.valueOf(),
+        precio: parseFloat(this.precio),
         fecha: this.hoy,
         nid: this.nid,
         imagenes: this.imagenesUrl,
@@ -412,16 +413,19 @@ export default {
         .listAll()
         .then((res) => {
           let x = res.items.length;
-          // this.y = 0;
-          if (this.borrado === false) {
-            if (x > 0) {
-              for (let i = 0; i < x; i++) {
-                st.ref(
-                  "IDanuncio/" + this.nid + "/" + res.items[i].name
-                ).delete();
-              }
-              this.borrado = true;
+
+          // carpeta nueva
+          if (this.borrado === false && x === 0) {
+            this.borrado = true;
+            // carpeta existente con imagenes
+          } else if (this.borrado === false && x > 0) {
+            for (let i = 0; i < x; i++) {
+              st.ref(
+                "IDanuncio/" + this.nid + "/" + res.items[i].name
+              ).delete();
             }
+            this.borrado = true;
+            // misma carpeta con imagenes
           }
         });
     },

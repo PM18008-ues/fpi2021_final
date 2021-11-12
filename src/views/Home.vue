@@ -164,10 +164,7 @@
           <!-- productos de la pagina -->
           <v-col lg="3" v-for="(producto, key) in buscarProductos" :key="key">
             <v-card class="text-center">
-              <v-img
-                height="250"
-                src="https://cdn.vuetifyjs.com/images/cards/cooking.png"
-              ></v-img>
+              <v-img height="250" :src="producto.imagenes[0]"></v-img>
               <v-card-text>
                 <h2 class="black--text">${{ producto.precio }}</h2>
               </v-card-text>
