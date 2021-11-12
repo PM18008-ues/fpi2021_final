@@ -15,6 +15,7 @@
           <v-spacer></v-spacer>
         </v-toolbar>
         {{ asignarNid() }}
+        {{ mostrarMensaje() }}
         <v-container class="pt-12">
           <v-row>
             <!-- Form de nuevo producto -->
@@ -272,6 +273,9 @@ export default {
       borrado: false,
       // productos de la bd
       productos: [],
+
+      // mostrar mensaje
+      snackbar: false,
     };
   },
   methods: {
@@ -308,6 +312,7 @@ export default {
 
       // cerrar ventana
       this.dialog = false;
+      this.snackbar = false;
     },
 
     agregar() {
@@ -338,6 +343,7 @@ export default {
 
       db.collection("productos").add(newProduc);
       this.cancelar();
+      this.snackbar = true;
     },
 
     upload() {
@@ -428,6 +434,11 @@ export default {
             // misma carpeta con imagenes
           }
         });
+    },
+
+    // mando el valor de la cadena al Padre
+    mostrarMensaje() {
+      this.$emit("guardado", this.snackbar);
     },
   },
 

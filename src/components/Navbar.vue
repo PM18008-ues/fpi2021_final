@@ -35,7 +35,18 @@
       >
       <v-btn text><v-icon large>mdi-cart</v-icon></v-btn>
     </v-app-bar>
-    <Modal ref="modal"> </Modal>
+    <Modal ref="modal" @guardado="mensaje = $event"> </Modal>
+
+    <!-- mensaje de producto guardado -->
+    <v-snackbar v-model="mensaje" :timeout="2000">
+      {{ texto }}
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink" text v-bind="attrs" @click="closeMensaje()">
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
   </v-container>
 </template>
 
@@ -46,22 +57,34 @@ export default {
     return {
       // cadena de busqueda
       cadena: "",
+      texto: "Se ha guardado el producto",
+      mensaje: false,
     };
   },
   components: { Modal },
 
   methods: {
+    // abrimos el modal
     openModal() {
       this.$refs.modal.dialog = true;
-    }, //executing the show method of child
+      // se formatea el snackbar
+      this.mensaje = false;
+      this.$refs.modal.snackbar = false;
+    },
 
-    // mando el valor de la cadena al Padre
+    // mando el valor de la cadena al App.vue
     buscar() {
       this.$emit("busqueda", this.cadena);
     },
 
+    // borramos la cadena
     borrar() {
       this.cadena = "";
+    },
+
+    // se cierra el mensaje al dar CLOSE
+    closeMensaje() {
+      this.$refs.modal.snackbar = false;
     },
   },
 };

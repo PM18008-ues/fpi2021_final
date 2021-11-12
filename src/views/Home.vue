@@ -5,7 +5,6 @@
       <v-col lg="3">
         <!-- switch de nuevo -->
         <v-switch v-model="switch1" :label="`Nuevo`"></v-switch>
-        {{ switch1 }}
         <!-- marcas -->
         <v-card>
           <v-card-title>Marca</v-card-title>
@@ -28,12 +27,17 @@
             <v-checkbox
               v-model="marcas"
               value="¡Phone"
-              :label="`¡Phone:`"
+              :label="`¡Phone`"
             ></v-checkbox>
             <v-checkbox
               v-model="marcas"
               value="Xiaomi"
               :label="`Xiaomi`"
+            ></v-checkbox>
+            <v-checkbox
+              v-model="marcas"
+              value="Motorola"
+              :label="`Motorola`"
             ></v-checkbox>
           </v-card-text>
         </v-card>
