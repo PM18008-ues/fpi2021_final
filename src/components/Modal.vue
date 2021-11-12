@@ -245,7 +245,7 @@ export default {
       vendedor: "",
       telefono: "",
       descripcion: "",
-      precio: null,
+      precio: 0,
       hoy: new Date().toLocaleDateString(),
 
       dialog: false,
@@ -296,7 +296,7 @@ export default {
         (this.vendedor = ""),
         (this.telefono = ""),
         (this.descripcion = ""),
-        (this.precio = null),
+        (this.precio = 0),
         (this.hoy = new Date().toLocaleDateString()),
         (this.radioGroup = 1),
         (this.file = null),
