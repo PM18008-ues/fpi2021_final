@@ -53,7 +53,6 @@ export default {
   methods: {
     openModal() {
       this.$refs.modal.dialog = true;
-      console.log(this.cadena);
     }, //executing the show method of child
 
     // mando el valor de la cadena al Padre

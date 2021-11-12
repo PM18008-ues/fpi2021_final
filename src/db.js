@@ -16,7 +16,7 @@ const firebaseConfig = {
 var app = firebase.initializeApp(firebaseConfig)
 
 export const db = app.firestore()
-export const storage = app.storage()
+export const st = app.storage()
 
 // Export types that exists in Firestore - Uncomment if you need them in your app
 // const { Timestamp, GeoPoint } = firebase.firestore
