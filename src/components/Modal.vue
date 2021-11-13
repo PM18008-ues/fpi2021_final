@@ -6,7 +6,7 @@
       fullscreen
       hide-overlay
     >
-      <v-card>
+      <v-card style="background-color: #ffcdd2">
         <v-toolbar dark color="primary">
           <v-btn icon dark @click="cancelar()">
             <v-icon>mdi-close</v-icon>
@@ -165,12 +165,12 @@
             <!-- botones de agregar y cancelar -->
             <v-col lg="3">
               <v-row class="pb-4">
-                <v-btn @click="agregar" color="blue" class="white--text"
+                <v-btn @click="agregar" color="primary" class="white--text"
                   ><v-icon color="white">mdi-plus-circle</v-icon>Agregar</v-btn
                 >
               </v-row>
               <v-row>
-                <v-btn @click="cancelar()" color="blue" class="white--text"
+                <v-btn @click="cancelar()" color="primary" class="white--text"
                   ><v-icon color="white">mdi-close-circle</v-icon
                   >Cancelar</v-btn
                 >
@@ -182,13 +182,17 @@
               <span class="subtitle-1">Agregar Imagenes</span>
             </v-col>
             <v-col cols="12" md="6">
+              <!-- input imagenes -->
               <v-file-input
                 v-model="file"
                 multiple
                 label="Agregar Imagen"
                 accept="image/*"
               ></v-file-input>
-              <v-btn :disabled="file == null" @click="upload()">Subir</v-btn>
+              <v-btn :disabled="file == null" color="primary" @click="upload()"
+                >Subir</v-btn
+              >
+              <!-- carousel de imagenes importadas-->
               <v-carousel>
                 <v-carousel-item
                   v-for="(imagen, i) in imagenesUrl"
@@ -214,7 +218,9 @@
                       <td>{{ item }}</td>
                       <td></td>
                       <td>
-                        <v-btn @click="eliminarImagen(key)">Borrar</v-btn>
+                        <v-btn @click="eliminarImagen(key)" color="primary"
+                          >Borrar</v-btn
+                        >
                       </td>
                     </tr>
                   </tbody>

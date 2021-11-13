@@ -7,8 +7,24 @@
         <v-switch v-model="switch1" :label="`Nuevo`"></v-switch>
         <!-- marcas -->
         <v-card>
-          <v-card-title>Marca</v-card-title>
-          <v-card-text>
+          <v-card-title
+            style="
+              border-top-style: solid;
+              border-right-style: solid;
+              border-left-style: solid;
+              border-color: #ffcdd2;
+            "
+            >Marca</v-card-title
+          >
+          <v-card-text
+            style="
+              border-top-style: dotted;
+              border-right-style: solid;
+              border-bottom-style: solid;
+              border-left-style: solid;
+              border-color: #ffcdd2;
+            "
+          >
             <v-checkbox
               v-model="marcas"
               value="Samsung"
@@ -43,8 +59,23 @@
         </v-card>
         <!-- sistemas -->
         <v-card>
-          <v-card-title>Sistema</v-card-title>
-          <v-card-text>
+          <v-card-title
+            style="
+              border-right-style: solid;
+              border-left-style: solid;
+              border-color: #ffcdd2;
+            "
+            >Sistema</v-card-title
+          >
+          <v-card-text
+            style="
+              border-top-style: dotted;
+              border-right-style: solid;
+              border-bottom-style: solid;
+              border-left-style: solid;
+              border-color: #ffcdd2;
+            "
+          >
             <v-checkbox
               v-model="sistemas"
               value="Android"
@@ -64,8 +95,23 @@
         </v-card>
         <!-- pantallas -->
         <v-card>
-          <v-card-title>Pantalla</v-card-title>
-          <v-card-text>
+          <v-card-title
+            style="
+              border-right-style: solid;
+              border-left-style: solid;
+              border-color: #ffcdd2;
+            "
+            >Pantalla</v-card-title
+          >
+          <v-card-text
+            style="
+              border-top-style: dotted;
+              border-right-style: solid;
+              border-bottom-style: solid;
+              border-left-style: solid;
+              border-color: #ffcdd2;
+            "
+          >
             <v-checkbox
               v-model="pantallas"
               value="7.0"
@@ -179,13 +225,13 @@
                         align-center
                         text-center
                         transition-fast-in-fast-out
-                        white
+                        grey
                         darken-2
                         v-card--reveal
                         display-3
                         white--text
                       "
-                      style="height: 100%; opacity: 0.9"
+                      style="height: 100%; opacity: 0.95"
                     >
                       <v-btn
                         v-if="hover"
@@ -207,11 +253,12 @@
           </v-col>
         </v-row>
         <v-row>
+          <!-- paginador -->
           <v-col lg="8">
             <div class="text-center">
               <v-pagination
                 v-model="page"
-                :length="15"
+                :length="tamanio"
                 :total-visible="7"
               ></v-pagination>
             </div>
@@ -283,12 +330,39 @@ export default {
       // #articulos por pagina default
       e1: 5,
 
+      // tamanio de paginador
+      tamanio: 0,
+
       // articulos por pagina
       articulos: [5, 10, 15, 20, 25],
     };
   },
 
-  methods: {},
+  methods: {
+    tamPaginas(arreglo) {
+      this.tamanio = 0;
+      if (arreglo.length >= this.e1) {
+        if (arreglo.length % this.e1 > 0) {
+          this.tamanio = Math.trunc(arreglo.length / this.e1) + 1;
+        } else {
+          this.tamanio = arreglo.length / this.e1;
+        }
+      } else {
+        this.tamanio = 1;
+      }
+      console.log(this.tamanio);
+    },
+
+    paginarProductos(arreglo) {
+      let nuevo = [];
+      for (let i = (this.page - 1) * this.e1; i < this.page * this.e1; i++) {
+        if (i < arreglo.length) {
+          nuevo.push(arreglo[i]);
+        }
+      }
+      return nuevo;
+    },
+  },
   props: ["busqueda"],
   computed: {
     // filtro por categorias y rango de precios
@@ -346,21 +420,10 @@ export default {
       }, this);
     },
 
-    // paginar productos
-    paginarProductos: function () {
-      let copia = this.selectedItems.slice();
-      let nuevo = [];
-      for (let i = (this.page - 1) * this.e1; i < this.page * this.e1; i++) {
-        if (i < copia.length) {
-          nuevo.push(copia[i]);
-        }
-      }
-      return nuevo;
-    },
-
     // ordenar Productos
     orderarProductos: function () {
-      let copia = this.paginarProductos.slice();
+      let y = this.paginarProductos(this.selectedItems);
+      let copia = y.slice();
       // precio Asc
       if (this.radioGroup === 1 && this.opcion === "precio") {
         return copia.sort((a, b) => {
@@ -459,14 +522,18 @@ export default {
     // buscar productos segun el titulo
     buscarProductos: function () {
       if (this.busqueda.length === 0) {
+        this.tamPaginas(this.selectedItems.slice());
         return this.orderarProductos.slice();
       } else {
-        return this.productos.filter((item) => {
+        let y = this.productos.filter((item) => {
           let x = item.titulo
             .toLowerCase()
             .indexOf(this.busqueda.toLowerCase());
           return x >= 0;
         });
+        this.tamPaginas(y);
+        let w = this.paginarProductos(y);
+        return w;
       }
     },
   },
