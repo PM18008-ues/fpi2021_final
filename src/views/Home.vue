@@ -4,141 +4,124 @@
       <!-- Filtros de la tienda -->
       <v-col lg="3">
         <!-- switch de nuevo -->
-        <v-switch v-model="switch1" :label="`Nuevo`"></v-switch>
+        <v-row class="align-center">
+          <v-col lg="3">
+            <v-switch v-model="switch1"></v-switch>
+          </v-col>
+          <v-col lg="2">
+            <label v-show="switch1 === false">Usados</label>
+            <label v-show="switch1 === true">Nuevos</label>
+          </v-col>
+        </v-row>
+
         <!-- marcas -->
-        <v-card>
-          <v-card-title
-            style="
-              border-top-style: solid;
-              border-right-style: solid;
-              border-left-style: solid;
-              border-color: #ffcdd2;
-            "
-            >Marca</v-card-title
-          >
-          <v-card-text
-            style="
-              border-top-style: dotted;
-              border-right-style: solid;
-              border-bottom-style: solid;
-              border-left-style: solid;
-              border-color: #ffcdd2;
-            "
-          >
-            <v-checkbox
-              v-model="marcas"
-              value="Samsung"
-              :label="`Samsung`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="marcas"
-              value="Huawei"
-              :label="`Huawei`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="marcas"
-              value="Nokia"
-              :label="`Nokia`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="marcas"
-              value="¡Phone"
-              :label="`¡Phone`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="marcas"
-              value="Xiaomi"
-              :label="`Xiaomi`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="marcas"
-              value="Motorola"
-              :label="`Motorola`"
-            ></v-checkbox>
-          </v-card-text>
-        </v-card>
+        <v-row>
+          <v-col lg="12">
+            <v-card>
+              <v-card-title>Marca</v-card-title>
+              <v-card-text
+                style="border-top-style: dotted; border-color: #ffcdd2"
+              >
+                <v-checkbox
+                  v-model="marcas"
+                  value="Samsung"
+                  :label="`Samsung`"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="marcas"
+                  value="Huawei"
+                  :label="`Huawei`"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="marcas"
+                  value="Nokia"
+                  :label="`Nokia`"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="marcas"
+                  value="¡Phone"
+                  :label="`¡Phone`"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="marcas"
+                  value="Xiaomi"
+                  :label="`Xiaomi`"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="marcas"
+                  value="Motorola"
+                  :label="`Motorola`"
+                ></v-checkbox>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+
         <!-- sistemas -->
-        <v-card>
-          <v-card-title
-            style="
-              border-right-style: solid;
-              border-left-style: solid;
-              border-color: #ffcdd2;
-            "
-            >Sistema</v-card-title
-          >
-          <v-card-text
-            style="
-              border-top-style: dotted;
-              border-right-style: solid;
-              border-bottom-style: solid;
-              border-left-style: solid;
-              border-color: #ffcdd2;
-            "
-          >
-            <v-checkbox
-              v-model="sistemas"
-              value="Android"
-              :label="`Android`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="sistemas"
-              value="Windows"
-              :label="`Windows`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="sistemas"
-              value="Ios"
-              :label="`Ios`"
-            ></v-checkbox>
-          </v-card-text>
-        </v-card>
+        <v-row>
+          <v-col lg="12">
+            <v-card>
+              <v-card-title>Sistema</v-card-title>
+              <v-card-text
+                style="border-top-style: dotted; border-color: #ffcdd2"
+              >
+                <v-checkbox
+                  v-model="sistemas"
+                  value="Android"
+                  :label="`Android`"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="sistemas"
+                  value="Windows"
+                  :label="`Windows`"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="sistemas"
+                  value="Ios"
+                  :label="`Ios`"
+                ></v-checkbox>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
+
         <!-- pantallas -->
-        <v-card>
-          <v-card-title
-            style="
-              border-right-style: solid;
-              border-left-style: solid;
-              border-color: #ffcdd2;
-            "
-            >Pantalla</v-card-title
-          >
-          <v-card-text
-            style="
-              border-top-style: dotted;
-              border-right-style: solid;
-              border-bottom-style: solid;
-              border-left-style: solid;
-              border-color: #ffcdd2;
-            "
-          >
-            <v-checkbox
-              v-model="pantallas"
-              value="7.0"
-              :label="`7.0`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="pantallas"
-              value="6.5"
-              :label="`6.5`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="pantallas"
-              value="6.0"
-              :label="`6.0`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="pantallas"
-              value="5.5"
-              :label="`5.5`"
-            ></v-checkbox>
-            <v-checkbox
-              v-model="pantallas"
-              value="5.0"
-              :label="`5.0`"
-            ></v-checkbox>
-          </v-card-text>
-        </v-card>
+        <v-row>
+          <v-col lg="12">
+            <v-card>
+              <v-card-title>Pantalla</v-card-title>
+              <v-card-text
+                style="border-top-style: dotted; border-color: #ffcdd2"
+              >
+                <v-checkbox
+                  v-model="pantallas"
+                  value="7.0"
+                  :label="`7.0`"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="pantallas"
+                  value="6.5"
+                  :label="`6.5`"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="pantallas"
+                  value="6.0"
+                  :label="`6.0`"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="pantallas"
+                  value="5.5"
+                  :label="`5.5`"
+                ></v-checkbox>
+                <v-checkbox
+                  v-model="pantallas"
+                  value="5.0"
+                  :label="`5.0`"
+                ></v-checkbox>
+              </v-card-text>
+            </v-card>
+          </v-col>
+        </v-row>
       </v-col>
       <v-col cols="9">
         <v-row>
@@ -190,8 +173,10 @@
             <v-card class="pt-10">
               <v-row>
                 <v-col lg="6">
-                  <v-row><label class="pl-10">Ordenar Por:</label></v-row>
-                  <v-row class="pl-12">
+                  <v-row class="justify-center"
+                    ><label>Ordenar Por:</label></v-row
+                  >
+                  <v-row class="justify-center">
                     <v-radio-group v-model="radioGroup">
                       <v-radio :label="`Asc`" :value="1"></v-radio>
                       <v-radio :label="`Des`" :value="2"></v-radio>
