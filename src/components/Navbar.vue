@@ -2,7 +2,10 @@
   <v-container>
     <v-app-bar app color="primary" dark>
       <!-- boton del sidenav -->
-      <v-app-bar-nav-icon class="hidden-lg-and-up"></v-app-bar-nav-icon>
+      <v-app-bar-nav-icon
+        class="hidden-lg-and-up"
+        @click.stop="drawer = !drawer"
+      ></v-app-bar-nav-icon>
       <!-- logo de la tienda -->
       <v-toolbar-title>
         <v-btn plain class="white--text" style="text-decoration: none" :to="'/'"
@@ -35,6 +38,52 @@
       >
       <v-btn icon @click="openCarrito"><v-icon large>mdi-cart</v-icon></v-btn>
     </v-app-bar>
+    <v-navigation-drawer v-model="drawer" absolute temporary>
+      <v-list>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-cellphone-check</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-btn plain :to="'/'"><b>Tienda CellPhone</b></v-btn>
+          </v-list-item-content>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-home</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-btn plain :to="'/'">Inicio</v-btn>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-plus-circle</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-btn plain @click="openModal">Nuevo Anuncio</v-btn>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-cart</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-btn plain @click="openCarrito">Carrito</v-btn>
+          </v-list-item-content>
+        </v-list-item>
+        <v-list-item>
+          <v-list-item-icon>
+            <v-icon>mdi-poll</v-icon>
+          </v-list-item-icon>
+          <v-list-item-content>
+            <v-btn plain :to="'/'">Estadisticas</v-btn>
+          </v-list-item-content>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
     <Modal ref="modal" @guardado="mensaje = $event"> </Modal>
     <Carrito ref="carrito"></Carrito>
 
@@ -62,6 +111,7 @@ export default {
       cadena: "",
       texto: "Se ha guardado el producto",
       mensaje: false,
+      drawer: false,
     };
   },
   components: { Modal, Carrito },
