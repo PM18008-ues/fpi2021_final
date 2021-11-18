@@ -128,8 +128,9 @@
           <!-- rango de precios -->
           <v-col lg="6">
             <v-card flat color="transparent">
-              <v-subheader>Rango de Precios</v-subheader>
-
+              <v-card-title class="justify-center"
+                >Rango de precios ($)</v-card-title
+              >
               <v-card-text>
                 <v-row>
                   <v-col class="px-4">
@@ -149,7 +150,8 @@
                           type="number"
                           style="width: 60px"
                           @change="$set(range, 0, $event)"
-                        ></v-text-field>
+                        >
+                        </v-text-field>
                       </template>
                       <template v-slot:append>
                         <v-text-field
@@ -160,7 +162,8 @@
                           type="number"
                           style="width: 60px"
                           @change="$set(range, 1, $event)"
-                        ></v-text-field>
+                        >
+                        </v-text-field>
                       </template>
                     </v-range-slider>
                   </v-col>
@@ -220,7 +223,7 @@
                     >
                       <v-btn
                         v-if="hover"
-                        :to="'/Anuncio/' + producto.id"
+                        :to="'/anuncio/' + producto.id"
                         color="primary"
                         >Detalles</v-btn
                       >
@@ -335,7 +338,6 @@ export default {
       } else {
         this.tamanio = 1;
       }
-      console.log(this.tamanio);
     },
 
     paginarProductos(arreglo) {

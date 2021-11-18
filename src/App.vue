@@ -9,6 +9,7 @@
 
 <script>
 import NavBar from "./components/Navbar.vue";
+import { bus } from "./main";
 export default {
   name: "App",
   components: {
@@ -18,7 +19,22 @@ export default {
     //
     return {
       newCad: "",
+      compras: [],
     };
+  },
+
+  methods: {
+    mandarCompras() {
+      bus.$emit("showCarrito", this.compras[this.compras.length - 1]);
+      console.log("mande la basura");
+    },
+  },
+
+  created() {
+    bus.$on("addCarrito", (data) => {
+      this.compras.push(data);
+      this.mandarCompras();
+    });
   },
 };
 </script>

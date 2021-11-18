@@ -20,7 +20,7 @@
             <h1>${{ anuncio.precio }}</h1>
           </v-row>
           <v-row class="justify-center pb-10">
-            <v-btn color="primary">Comprar</v-btn>
+            <v-btn color="primary" @click="agregarproducto()">Comprar</v-btn>
           </v-row>
           <v-row>
             <v-col lg="12">
@@ -57,7 +57,8 @@
                   <tbody>
                     <tr>
                       <td>Estado:</td>
-                      <td>{{ anuncio.estado }}</td>
+                      <td v-show="anuncio.nuevo === false">Usado</td>
+                      <td v-show="anuncio.nuevo === true">Nuevo</td>
                     </tr>
                     <tr>
                       <td>Marca:</td>
@@ -77,11 +78,11 @@
                     </tr>
                     <tr>
                       <td>ROM:</td>
-                      <td>{{ anuncio.romf }} GB</td>
+                      <td>{{ anuncio.rom }} GB</td>
                     </tr>
                     <tr>
                       <td>RAM:</td>
-                      <td>{{ anuncio.ramf }} GB</td>
+                      <td>{{ anuncio.ram }} GB</td>
                     </tr>
                   </tbody>
                 </template>
@@ -96,6 +97,7 @@
 
 <script>
 import { db } from "../db";
+import { bus } from "../main";
 export default {
   data() {
     return {
@@ -115,6 +117,9 @@ export default {
         .catch((e) => {
           console.log(e);
         });
+    },
+    agregarproducto() {
+      bus.$emit("addCarrito", this.anuncio);
     },
   },
 

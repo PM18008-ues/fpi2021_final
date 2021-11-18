@@ -3,6 +3,7 @@ import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Anuncio from "../views/Anuncio.vue"
 
+
 Vue.use(VueRouter)
 
 const routes = [
@@ -11,11 +12,13 @@ const routes = [
     name: 'Home',
     component: Home
   },
+
   {
-    path: '/Anuncio/:id',
+    path: '/anuncio/:id',
     name: 'Anuncio',
     component: Anuncio
   },
+
   {
     path: '/about',
     name: 'About',
