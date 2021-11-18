@@ -22,14 +22,14 @@
                 <template v-slot:default>
                   <thead>
                     <tr>
-                      <th class="text-left">Name</th>
-                      <th class="text-left">Calories</th>
+                      <th class="text-left">Producto</th>
+                      <th class="text-left">Precio</th>
                     </tr>
                   </thead>
                   <tbody>
                     <tr v-for="(item, key) in compras" :key="key">
                       <td>{{ item.titulo }}</td>
-                      <td>{{ item.precio }}</td>
+                      <td>${{ item.precio }}</td>
                     </tr>
                   </tbody>
                 </template>
@@ -50,6 +50,7 @@ export default {
     return {
       dialog: false,
       compras: [],
+      existe: false,
     };
   },
   methods: {
@@ -58,9 +59,19 @@ export default {
     },
   },
 
-  created() {
-    bus.$on("showCarrito", (data) => {
-      this.compras.push(data);
+  mounted() {
+    bus.$on("addCarrito", (data) => {
+      this.existe = false;
+      this.compras.forEach((element) => {
+        console.log("recorre la lista");
+        if (element.titulo == data.titulo) {
+          this.existe = true;
+        }
+      });
+      if (this.existe === false) {
+        this.compras.push(data);
+        this.existe = false;
+      }
     });
   },
 };
