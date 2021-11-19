@@ -20,7 +20,9 @@
             <h1>${{ anuncio.precio }}</h1>
           </v-row>
           <v-row class="justify-center pb-10">
-            <v-btn color="primary" @click="agregarproducto()">Comprar</v-btn>
+            <v-btn color="primary" @click="agregarproducto()"
+              ><v-icon>mdi-cart-plus</v-icon> Agregar Producto</v-btn
+            >
           </v-row>
           <v-row>
             <v-col lg="12">

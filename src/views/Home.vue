@@ -225,7 +225,7 @@
                         v-if="hover"
                         :to="'/anuncio/' + producto.id"
                         color="primary"
-                        >Detalles</v-btn
+                        >Abrir</v-btn
                       >
                     </div>
                   </v-expand-transition>
@@ -526,7 +526,7 @@ export default {
   },
 
   firestore: {
-    productos: db.collection("productos"),
+    productos: db.collection("productos").where("vendido", "==", false),
   },
 };
 </script>
