@@ -22,36 +22,86 @@
               <v-card-text
                 style="border-top-style: dotted; border-color: #ffcdd2"
               >
-                <v-checkbox
-                  v-model="marcas"
-                  value="Samsung"
-                  :label="`Samsung`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="marcas"
-                  value="Huawei"
-                  :label="`Huawei`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="marcas"
-                  value="Nokia"
-                  :label="`Nokia`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="marcas"
-                  value="¡Phone"
-                  :label="`¡Phone`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="marcas"
-                  value="Xiaomi"
-                  :label="`Xiaomi`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="marcas"
-                  value="Motorola"
-                  :label="`Motorola`"
-                ></v-checkbox>
+                <v-list>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarMarca('Samsung')"
+                    >
+                      <v-checkbox
+                        v-model="marcas"
+                        value="Samsung"
+                        :label="`Samsung`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarMarca('Huawei')"
+                    >
+                      <v-checkbox
+                        v-model="marcas"
+                        value="Huawei"
+                        :label="`Huawei`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarMarca('Nokia')"
+                    >
+                      <v-checkbox
+                        v-model="marcas"
+                        value="Nokia"
+                        :label="`Nokia`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarMarca('¡Phone')"
+                    >
+                      <v-checkbox
+                        v-model="marcas"
+                        value="¡Phone"
+                        :label="`¡Phone`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarMarca('Xiaomi')"
+                    >
+                      <v-checkbox
+                        v-model="marcas"
+                        value="Xiaomi"
+                        :label="`Xiaomi`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarMarca('Motorola')"
+                    >
+                      <v-checkbox
+                        v-model="marcas"
+                        value="Motorola"
+                        :label="`Motorola`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                </v-list>
               </v-card-text>
             </v-card>
           </v-col>
@@ -65,21 +115,47 @@
               <v-card-text
                 style="border-top-style: dotted; border-color: #ffcdd2"
               >
-                <v-checkbox
-                  v-model="sistemas"
-                  value="Android"
-                  :label="`Android`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="sistemas"
-                  value="Windows"
-                  :label="`Windows`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="sistemas"
-                  value="Ios"
-                  :label="`Ios`"
-                ></v-checkbox>
+                <v-list>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarSistema('Android')"
+                    >
+                      <v-checkbox
+                        v-model="sistemas"
+                        value="Android"
+                        :label="`Android`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarSistema('Windows')"
+                    >
+                      <v-checkbox
+                        v-model="sistemas"
+                        value="Windows"
+                        :label="`Windows`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarSistema('Ios')"
+                    >
+                      <v-checkbox
+                        v-model="sistemas"
+                        value="Ios"
+                        :label="`Ios`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                </v-list>
               </v-card-text>
             </v-card>
           </v-col>
@@ -93,31 +169,73 @@
               <v-card-text
                 style="border-top-style: dotted; border-color: #ffcdd2"
               >
-                <v-checkbox
-                  v-model="pantallas"
-                  value="7.0"
-                  :label="`7.0`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="pantallas"
-                  value="6.5"
-                  :label="`6.5`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="pantallas"
-                  value="6.0"
-                  :label="`6.0`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="pantallas"
-                  value="5.5"
-                  :label="`5.5`"
-                ></v-checkbox>
-                <v-checkbox
-                  v-model="pantallas"
-                  value="5.0"
-                  :label="`5.0`"
-                ></v-checkbox>
+                <v-list>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarPantalla('7.0')"
+                    >
+                      <v-checkbox
+                        v-model="pantallas"
+                        value="7.0"
+                        :label="`7.0`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarPantalla('6.5')"
+                    >
+                      <v-checkbox
+                        v-model="pantallas"
+                        value="6.5"
+                        :label="`6.5`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarPantalla('6.0')"
+                    >
+                      <v-checkbox
+                        v-model="pantallas"
+                        value="6.0"
+                        :label="`6.0`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarPantalla('5.5')"
+                    >
+                      <v-checkbox
+                        v-model="pantallas"
+                        value="5.5"
+                        :label="`5.5`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                  <v-list-item>
+                    <v-badge
+                      inline
+                      color="secondary"
+                      :content="contarPantalla('5.0')"
+                    >
+                      <v-checkbox
+                        v-model="pantallas"
+                        value="5.0"
+                        :label="`5.0`"
+                      ></v-checkbox>
+                    </v-badge>
+                  </v-list-item>
+                </v-list>
               </v-card-text>
             </v-card>
           </v-col>
@@ -202,7 +320,11 @@
           <!-- productos de la pagina -->
           <v-col lg="3" v-for="(producto, key) in buscarProductos" :key="key">
             <v-hover v-slot:default="{ hover }">
-              <v-card class="text-center" color="grey lighten-4">
+              <v-card
+                class="text-center overflow-hidden"
+                color="grey lighten-4"
+                height="365"
+              >
                 <v-img height="250px" :src="producto.imagenes[0]">
                   <v-expand-transition>
                     <div
@@ -232,10 +354,10 @@
                 </v-img>
                 <v-card-text>
                   <h2 class="black--text">${{ producto.precio }}</h2>
+                  <span>{{ producto.titulo }}</span>
+                  <br />
+                  <span>{{ producto.fecha }}</span>
                 </v-card-text>
-                <span>{{ producto.titulo }}</span>
-                <br />
-                <span>{{ producto.fecha }}</span>
               </v-card>
             </v-hover>
           </v-col>
@@ -323,6 +445,9 @@ export default {
 
       // articulos por pagina
       articulos: [5, 10, 15, 20, 25],
+
+      // cantidad de productos por categoria
+      cuentas: [],
     };
   },
 
@@ -349,7 +474,48 @@ export default {
       }
       return nuevo;
     },
+
+    // contar categorias
+    contarMarca(categoria) {
+      let nuevo = this.productos.filter(function (item) {
+        if (item.marca == categoria) {
+          return true;
+        }
+      });
+      if (nuevo.length === 0) {
+        return "0";
+      } else {
+        return nuevo.length;
+      }
+    },
+
+    contarSistema(categoria) {
+      let nuevo = this.productos.filter(function (item) {
+        if (item.sistema == categoria) {
+          return true;
+        }
+      });
+      if (nuevo.length === 0) {
+        return "0";
+      } else {
+        return nuevo.length;
+      }
+    },
+
+    contarPantalla(categoria) {
+      let nuevo = this.productos.filter(function (item) {
+        if (item.pantalla == categoria) {
+          return true;
+        }
+      });
+      if (nuevo.length === 0) {
+        return "0";
+      } else {
+        return nuevo.length;
+      }
+    },
   },
+
   props: ["busqueda"],
   computed: {
     // filtro por categorias y rango de precios
@@ -523,6 +689,12 @@ export default {
         return w;
       }
     },
+  },
+
+  created() {
+    this.contarMarca();
+    this.contarSistema();
+    this.contarPantalla();
   },
 
   firestore: {
