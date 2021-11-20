@@ -96,8 +96,13 @@ export default {
       }
     },
 
+    totalProductos() {
+      bus.$emit("TProductos", this.compras.length);
+    },
+
     borrarProducto(index) {
       this.compras.splice(index, 1);
+      this.totalProductos();
     },
 
     vender() {
@@ -112,6 +117,7 @@ export default {
           });
         });
         this.compras = [];
+        this.totalProductos();
       }
     },
   },
@@ -120,7 +126,6 @@ export default {
     bus.$on("addCarrito", (data) => {
       this.existe = false;
       this.compras.forEach((element) => {
-        console.log("recorre la lista");
         if (element.titulo == data.titulo) {
           this.existe = true;
         }
@@ -129,6 +134,7 @@ export default {
         this.compras.push(data);
         this.existe = false;
       }
+      this.totalProductos();
     });
   },
 

@@ -36,7 +36,11 @@
       <v-btn icon @click="openModal"
         ><v-icon large>mdi-plus-circle</v-icon></v-btn
       >
-      <v-btn icon @click="openCarrito"><v-icon large>mdi-cart</v-icon></v-btn>
+      <v-badge color="secondary" overlap :content="total"
+        ><v-btn icon @click="openCarrito"
+          ><v-icon large>mdi-cart</v-icon></v-btn
+        ></v-badge
+      >
     </v-app-bar>
     <v-navigation-drawer v-model="drawer" absolute temporary>
       <v-list>
@@ -103,6 +107,7 @@
 <script>
 import Modal from "./Modal.vue";
 import Carrito from "./Carrito.vue";
+import { bus } from "../main";
 
 export default {
   data() {
@@ -112,6 +117,7 @@ export default {
       texto: "Se ha guardado el producto",
       mensaje: false,
       drawer: false,
+      total: "0",
     };
   },
   components: { Modal, Carrito },
@@ -132,6 +138,18 @@ export default {
       // this.$refs.modal.snackbar = false;
     },
 
+    mostrarTotal() {
+      bus.$on("TProductos", (data) => {
+        if (data == 0) {
+          this.total = "0";
+        } else {
+          console.log("data: " + data);
+          this.total = "" + data;
+        }
+        console.log("recibe");
+      });
+    },
+
     // mando el valor de la cadena al App.vue
     buscar() {
       this.$emit("busqueda", this.cadena);
@@ -146,6 +164,10 @@ export default {
     closeMensaje() {
       this.$refs.modal.snackbar = false;
     },
+  },
+
+  mounted() {
+    this.mostrarTotal();
   },
 };
 </script>
