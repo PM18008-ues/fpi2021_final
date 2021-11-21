@@ -1,14 +1,14 @@
 <template>
   <v-container>
-    <v-row>
+    <v-row class="pb-12">
       <!-- Filtros de la tienda -->
-      <v-col lg="3">
+      <v-col lg="3" md="3" class="hidden-sm-and-down">
         <!-- switch de nuevo -->
         <v-row class="align-center">
-          <v-col lg="3">
+          <v-col lg="3" md="3">
             <v-switch v-model="switch1"></v-switch>
           </v-col>
-          <v-col lg="2">
+          <v-col lg="2" md="2">
             <label v-show="switch1 === false">Usados</label>
             <label v-show="switch1 === true">Nuevos</label>
           </v-col>
@@ -16,7 +16,7 @@
 
         <!-- marcas -->
         <v-row>
-          <v-col lg="12">
+          <v-col lg="12" md="12">
             <v-card>
               <v-card-title>Marca</v-card-title>
               <v-card-text
@@ -109,7 +109,7 @@
 
         <!-- sistemas -->
         <v-row>
-          <v-col lg="12">
+          <v-col lg="12" md="12">
             <v-card>
               <v-card-title>Sistema</v-card-title>
               <v-card-text
@@ -163,7 +163,7 @@
 
         <!-- pantallas -->
         <v-row>
-          <v-col lg="12">
+          <v-col lg="12" md="12">
             <v-card>
               <v-card-title>Pantalla</v-card-title>
               <v-card-text
@@ -241,10 +241,10 @@
           </v-col>
         </v-row>
       </v-col>
-      <v-col cols="9">
+      <v-col cols="12" lg="9" md="9" sm="12">
         <v-row>
           <!-- rango de precios -->
-          <v-col lg="6">
+          <v-col lg="6" md="6" sm="6" xs="12">
             <v-card flat color="transparent">
               <v-card-title class="justify-center"
                 >Rango de precios ($)</v-card-title
@@ -290,10 +290,10 @@
             </v-card>
           </v-col>
           <!-- ordenar por -->
-          <v-col lg="6">
+          <v-col cols="12" lg="6" md="6" sm="6">
             <v-card class="pt-10">
               <v-row>
-                <v-col lg="6">
+                <v-col cols="6">
                   <v-row class="justify-center"
                     ><label>Ordenar Por:</label></v-row
                   >
@@ -304,13 +304,23 @@
                     </v-radio-group>
                   </v-row>
                 </v-col>
-                <v-col lg="5">
-                  <v-select
-                    :items="items"
-                    label="Opcion"
-                    v-model="opcion"
-                    outlined
-                  ></v-select>
+                <v-col cols="5">
+                  <v-row>
+                    <v-select
+                      :items="items"
+                      label="Opcion"
+                      v-model="opcion"
+                      style="width: 75%"
+                      outlined
+                    ></v-select>
+                  </v-row>
+                  <v-row class="justify-center pb-5">
+                    <v-btn color="primary" class="hidden-md-and-up"
+                      ><v-icon @click="menu = true"
+                        >mdi-filter-menu</v-icon
+                      ></v-btn
+                    >
+                  </v-row>
                 </v-col>
               </v-row>
             </v-card>
@@ -318,7 +328,14 @@
         </v-row>
         <v-row class="pt-10">
           <!-- productos de la pagina -->
-          <v-col lg="3" v-for="(producto, key) in buscarProductos" :key="key">
+          <v-col
+            cols="6"
+            lg="3"
+            md="4"
+            sm="4"
+            v-for="(producto, key) in buscarProductos"
+            :key="key"
+          >
             <v-hover v-slot:default="{ hover }">
               <v-card
                 class="text-center overflow-hidden"
@@ -352,7 +369,7 @@
                     </div>
                   </v-expand-transition>
                 </v-img>
-                <v-card-text>
+                <v-card-text class="text-truncate">
                   <h2 class="black--text">${{ producto.precio }}</h2>
                   <span>{{ producto.titulo }}</span>
                   <br />
@@ -395,6 +412,227 @@
         </v-row>
       </v-col>
     </v-row>
+
+    <v-navigation-drawer v-model="menu" absolute temporary height="40%">
+      <v-list>
+        <v-list-item>
+          <v-row class="align-center">
+            <v-col cols="3" lg="3" md="3">
+              <v-switch v-model="switch1"></v-switch>
+            </v-col>
+            <v-col cols="2" lg="2" md="2">
+              <label v-show="switch1 === false">Usados</label>
+              <label v-show="switch1 === true">Nuevos</label>
+            </v-col>
+          </v-row>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-list>
+            <v-list-item>
+              <h3>Marca</h3>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarMarca('Samsung')"
+              >
+                <v-checkbox
+                  v-model="marcas"
+                  value="Samsung"
+                  :label="`Samsung`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarMarca('Huawei')"
+              >
+                <v-checkbox
+                  v-model="marcas"
+                  value="Huawei"
+                  :label="`Huawei`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+            <v-list-item>
+              <v-badge inline color="secondary" :content="contarMarca('Nokia')">
+                <v-checkbox
+                  v-model="marcas"
+                  value="Nokia"
+                  :label="`Nokia`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarMarca('¡Phone')"
+              >
+                <v-checkbox
+                  v-model="marcas"
+                  value="¡Phone"
+                  :label="`¡Phone`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarMarca('Xiaomi')"
+              >
+                <v-checkbox
+                  v-model="marcas"
+                  value="Xiaomi"
+                  :label="`Xiaomi`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarMarca('Motorola')"
+              >
+                <v-checkbox
+                  v-model="marcas"
+                  value="Motorola"
+                  :label="`Motorola`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+          </v-list>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-list>
+            <v-list-item>
+              <h3>Sistema</h3>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarSistema('Android')"
+              >
+                <v-checkbox
+                  v-model="sistemas"
+                  value="Android"
+                  :label="`Android`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarSistema('Windows')"
+              >
+                <v-checkbox
+                  v-model="sistemas"
+                  value="Windows"
+                  :label="`Windows`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+            <v-list-item>
+              <v-badge inline color="secondary" :content="contarSistema('Ios')">
+                <v-checkbox
+                  v-model="sistemas"
+                  value="Ios"
+                  :label="`Ios`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+          </v-list>
+        </v-list-item>
+        <v-divider></v-divider>
+        <v-list-item>
+          <v-list>
+            <v-list-item>
+              <h3>Pantalla</h3>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarPantalla('7.0')"
+              >
+                <v-checkbox
+                  v-model="pantallas"
+                  value="7.0"
+                  :label="`7.0`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarPantalla('6.5')"
+              >
+                <v-checkbox
+                  v-model="pantallas"
+                  value="6.5"
+                  :label="`6.5`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarPantalla('6.0')"
+              >
+                <v-checkbox
+                  v-model="pantallas"
+                  value="6.0"
+                  :label="`6.0`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarPantalla('5.5')"
+              >
+                <v-checkbox
+                  v-model="pantallas"
+                  value="5.5"
+                  :label="`5.5`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+            <v-list-item>
+              <v-badge
+                inline
+                color="secondary"
+                :content="contarPantalla('5.0')"
+              >
+                <v-checkbox
+                  v-model="pantallas"
+                  value="5.0"
+                  :label="`5.0`"
+                ></v-checkbox>
+              </v-badge>
+            </v-list-item>
+          </v-list>
+        </v-list-item>
+      </v-list>
+    </v-navigation-drawer>
+
+    <v-footer padless absolute color="primary">
+      <v-col class="text-center white--text" cols="12">
+        FPI/2021 —
+        <strong>Portillo Merlos Melvin Ernesto PM18008</strong>
+      </v-col>
+    </v-footer>
   </v-container>
 </template>
 
@@ -448,6 +686,9 @@ export default {
 
       // cantidad de productos por categoria
       cuentas: [],
+
+      // categorias en sm
+      menu: false,
     };
   },
 

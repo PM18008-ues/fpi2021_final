@@ -3,12 +3,16 @@
     <v-app-bar app color="primary" dark>
       <!-- boton del sidenav -->
       <v-app-bar-nav-icon
-        class="hidden-lg-and-up"
+        class="hidden-md-and-up"
         @click.stop="drawer = !drawer"
       ></v-app-bar-nav-icon>
       <!-- logo de la tienda -->
       <v-toolbar-title>
-        <v-btn plain class="white--text" style="text-decoration: none" :to="'/'"
+        <v-btn
+          plain
+          class="white--text hidden-sm-and-down"
+          style="text-decoration: none"
+          :to="'/'"
           ><v-icon large>mdi-cellphone-check</v-icon> Tienda CellPhone</v-btn
         >
       </v-toolbar-title>
@@ -31,13 +35,17 @@
       </v-text-field>
       <v-spacer class="hidden-sm-and-down"></v-spacer>
 
-      <v-btn plain :to="'/'">Inicio</v-btn>
-      <v-btn plain :to="'/'">Estadisticas</v-btn>
-      <v-btn icon @click="openModal"
+      <v-btn plain class="hidden-sm-and-down" :to="'/'">Inicio</v-btn>
+      <v-btn plain class="hidden-sm-and-down" :to="'/'">Estadisticas</v-btn>
+      <v-btn icon class="hidden-sm-and-down" @click="openModal"
         ><v-icon large>mdi-plus-circle</v-icon></v-btn
       >
-      <v-badge color="secondary" overlap :content="total"
-        ><v-btn icon @click="openCarrito"
+      <v-badge
+        class="hidden-sm-and-down"
+        color="secondary"
+        overlap
+        :content="total"
+        ><v-btn class="hidden-sm-and-down" icon @click="openCarrito"
           ><v-icon large>mdi-cart</v-icon></v-btn
         ></v-badge
       >
@@ -146,7 +154,6 @@ export default {
           console.log("data: " + data);
           this.total = "" + data;
         }
-        console.log("recibe");
       });
     },
 
