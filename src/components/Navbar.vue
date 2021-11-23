@@ -50,7 +50,7 @@
         ></v-badge
       >
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" absolute temporary>
+    <v-navigation-drawer v-model="drawer" app fixed temporary>
       <v-list>
         <v-list-item>
           <v-list-item-icon>

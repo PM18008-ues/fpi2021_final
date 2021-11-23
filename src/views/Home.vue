@@ -413,7 +413,7 @@
       </v-col>
     </v-row>
 
-    <v-navigation-drawer v-model="menu" absolute temporary height="40%">
+    <v-navigation-drawer v-model="menu" app temporary height="60%">
       <v-list>
         <v-list-item>
           <v-row class="align-center">

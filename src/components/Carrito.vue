@@ -17,7 +17,7 @@
 
         <v-container class="pt-12">
           <v-row>
-            <v-col lg="12">
+            <v-col cols="12">
               <v-simple-table>
                 <template v-slot:default>
                   <thead>
@@ -39,7 +39,7 @@
                       </td>
                       <td>{{ item.titulo }}</td>
                       <td>${{ item.precio }}</td>
-                      <td>
+                      <td colspan="12">
                         <v-btn color="primary" @click="borrarProducto(key)"
                           >Borrar</v-btn
                         >
