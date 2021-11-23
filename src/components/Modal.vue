@@ -18,9 +18,66 @@
         {{ mostrarMensaje() }}
         <v-container class="pt-12">
           <v-row>
+            <v-col cols="12" class="hidden-md-and-up">
+              <v-row>
+                <v-file-input
+                  v-model="file"
+                  multiple
+                  label="Agregar Imagen"
+                  accept="image/*"
+                ></v-file-input>
+                <v-btn
+                  :disabled="file == null"
+                  color="primary"
+                  @click="upload()"
+                  >Subir</v-btn
+                >
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-simple-table>
+                    <template v-slot:default>
+                      <thead>
+                        <tr>
+                          <th class="text-left">Nombre</th>
+                          <th class="text-left"></th>
+                          <th class="text-left"></th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr v-for="(item, key) in imagenes" :key="key">
+                          <td>{{ item }}</td>
+                          <td></td>
+                          <td>
+                            <v-btn @click="eliminarImagen(key)" color="primary"
+                              >Borrar</v-btn
+                            >
+                          </td>
+                        </tr>
+                      </tbody>
+                    </template>
+                  </v-simple-table>
+                </v-col>
+              </v-row>
+              <v-row>
+                <v-col cols="12">
+                  <v-carousel>
+                    <v-carousel-item
+                      v-for="(imagen, i) in imagenesUrl"
+                      :key="i"
+                      :src="imagen"
+                      reverse-transition="fade-transition"
+                      transition="fade-transition"
+                    ></v-carousel-item>
+                  </v-carousel>
+                </v-col>
+              </v-row>
+            </v-col>
+          </v-row>
+          <v-row>
             <!-- Form de nuevo producto -->
 
-            <v-col lg="6">
+            <v-col cols="12" lg="6" md="6" sm="12">
               <v-card>
                 <v-card-text>
                   <v-row class="pb-2"
@@ -92,7 +149,7 @@
 
             <!-- form datos extra -->
 
-            <v-col lg="6">
+            <v-col cols="12" lg="6" md="6" sm="12" class="pl-6">
               <v-row>
                 <h3>Titulo breve del anuncio</h3>
               </v-row>
@@ -120,7 +177,7 @@
               <!-- input telefono -->
               <v-row class="pb-8">
                 <v-text-field
-                  style="max-width: 40%"
+                  style="max-width: 50%"
                   :rules="rules"
                   hide-details="auto"
                   label="0000-0000"
@@ -159,29 +216,36 @@
                   <label slot="prepend">$</label>
                 </v-text-field>
               </v-row>
+              <!-- botones de agregar y cancelar -->
+              <v-row class="pt-4">
+                <v-col cols="5">
+                  <v-row class="justify-center">
+                    <v-btn @click="agregar" color="primary" class="white--text"
+                      ><v-icon color="white">mdi-plus-circle</v-icon
+                      >Agregar</v-btn
+                    >
+                  </v-row>
+                </v-col>
+                <v-col cols="5">
+                  <v-row class="justify-center">
+                    <v-btn
+                      @click="cancelar()"
+                      color="primary"
+                      class="white--text"
+                      ><v-icon color="white">mdi-close-circle</v-icon
+                      >Cancelar</v-btn
+                    >
+                  </v-row>
+                </v-col>
+              </v-row>
             </v-col>
           </v-row>
+
           <v-row>
-            <!-- botones de agregar y cancelar -->
-            <v-col lg="3">
-              <v-row class="pb-4">
-                <v-btn @click="agregar" color="primary" class="white--text"
-                  ><v-icon color="white">mdi-plus-circle</v-icon>Agregar</v-btn
-                >
-              </v-row>
-              <v-row>
-                <v-btn @click="cancelar()" color="primary" class="white--text"
-                  ><v-icon color="white">mdi-close-circle</v-icon
-                  >Cancelar</v-btn
-                >
-              </v-row>
-            </v-col>
-          </v-row>
-          <v-row>
-            <v-col cols="12" class="text-center">
+            <v-col cols="12" class="text-center hidden-sm-and-down">
               <span class="subtitle-1">Agregar Imagenes</span>
             </v-col>
-            <v-col cols="12" md="6">
+            <v-col cols="12" md="6" class="hidden-sm-and-down">
               <!-- input imagenes -->
               <v-file-input
                 v-model="file"
@@ -209,8 +273,8 @@
                   <thead>
                     <tr>
                       <th class="text-left">Nombre</th>
-                      <th class="text-left">Tamaño</th>
-                      <th class="text-left">-</th>
+                      <th class="text-left"></th>
+                      <th class="text-left"></th>
                     </tr>
                   </thead>
                   <tbody>

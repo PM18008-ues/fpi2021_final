@@ -151,7 +151,6 @@ export default {
         if (data == 0) {
           this.total = "0";
         } else {
-          console.log("data: " + data);
           this.total = "" + data;
         }
       });
