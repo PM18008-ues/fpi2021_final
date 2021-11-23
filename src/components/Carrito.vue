@@ -14,7 +14,7 @@
           <v-toolbar-title>Carrito</v-toolbar-title>
           <v-spacer></v-spacer>
         </v-toolbar>
-
+        {{ mostrarMensaje() }}
         <v-container class="pt-12">
           <v-row>
             <v-col cols="12">
@@ -77,6 +77,8 @@ export default {
       compras: [],
       existe: false,
       productos: [],
+      // mostrar mensaje
+      snackbar: false,
     };
   },
   methods: {
@@ -117,8 +119,14 @@ export default {
           });
         });
         this.compras = [];
+        this.dialog = false;
+        this.snackbar = true;
         this.totalProductos();
       }
+    },
+
+    mostrarMensaje() {
+      this.$emit("venta", this.snackbar);
     },
   },
 

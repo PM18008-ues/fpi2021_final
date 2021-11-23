@@ -657,9 +657,9 @@ export default {
       pantallas: [],
 
       // valores del rango de precio
-      range: [0, 1000],
+      range: [0, 2000],
       min: 0,
-      max: 1000,
+      max: 2000,
 
       // valor de asc y des
       radioGroup: 0,

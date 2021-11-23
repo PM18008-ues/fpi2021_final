@@ -97,14 +97,24 @@
     </v-navigation-drawer>
 
     <Modal ref="modal" @guardado="mensaje = $event"> </Modal>
-    <Carrito ref="carrito"></Carrito>
+    <Carrito ref="carrito" @venta="vendido = $event"></Carrito>
 
     <!-- mensaje de producto guardado -->
-    <v-snackbar v-model="mensaje" :timeout="2000">
-      {{ texto }}
+    <v-snackbar v-model="mensaje" :timeout="3000">
+      Se ha guardado el producto
 
       <template v-slot:action="{ attrs }">
         <v-btn color="pink" text v-bind="attrs" @click="closeMensaje()">
+          Cerrar
+        </v-btn>
+      </template>
+    </v-snackbar>
+    <!-- mensaje de guardado del carrito -->
+    <v-snackbar v-model="vendido" :timeout="3000">
+      Se ha realizado la compra
+
+      <template v-slot:action="{ attrs }">
+        <v-btn color="pink" text v-bind="attrs" @click="closeCarrito()">
           Cerrar
         </v-btn>
       </template>
@@ -122,9 +132,10 @@ export default {
     return {
       // cadena de busqueda
       cadena: "",
-      texto: "Se ha guardado el producto",
+
       mensaje: false,
       drawer: false,
+      vendido: false,
       total: "0",
     };
   },
@@ -142,6 +153,8 @@ export default {
     openCarrito() {
       this.$refs.carrito.dialog = true;
       // se formatea el snackbar
+      this.vendido = false;
+      this.$refs.carrito.snackbar = false;
       // this.mensaje = false;
       // this.$refs.modal.snackbar = false;
     },
@@ -169,6 +182,10 @@ export default {
     // se cierra el mensaje al dar CLOSE
     closeMensaje() {
       this.$refs.modal.snackbar = false;
+    },
+
+    closeCarrito() {
+      this.$refs.carrito.snackbar = false;
     },
   },
 
