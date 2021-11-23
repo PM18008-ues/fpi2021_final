@@ -247,7 +247,7 @@
           <v-col lg="6" md="6" sm="6" xs="12">
             <v-card flat color="transparent">
               <v-card-title class="justify-center"
-                >Rango de precios ($)</v-card-title
+                >($) Precios entre</v-card-title
               >
               <v-card-text>
                 <v-row>
@@ -299,8 +299,16 @@
                   >
                   <v-row class="justify-center">
                     <v-radio-group v-model="radioGroup">
-                      <v-radio :label="`Asc`" :value="1"></v-radio>
-                      <v-radio :label="`Des`" :value="2"></v-radio>
+                      <v-radio
+                        :label="`Ascendente`"
+                        on-icon="mdi-arrow-up-bold-box"
+                        :value="1"
+                      ></v-radio>
+                      <v-radio
+                        :label="`Descendente`"
+                        on-icon="mdi-arrow-down-bold-box"
+                        :value="2"
+                      ></v-radio>
                     </v-radio-group>
                   </v-row>
                 </v-col>

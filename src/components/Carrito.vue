@@ -58,7 +58,12 @@
             </v-col>
           </v-row>
           <v-row class="justify-center">
-            <v-btn color="primary" @click="vender()">Finalizar Compra</v-btn>
+            <v-btn
+              color="primary"
+              :disabled="compras.length == 0"
+              @click="vender()"
+              >Finalizar Compra</v-btn
+            >
           </v-row>
         </v-container>
       </v-card>
