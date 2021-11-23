@@ -13,15 +13,31 @@
           </v-carousel>
         </v-col>
         <v-col lg="6">
-          <v-row class="pb-10">
-            <span class="display-1">{{ anuncio.titulo }}</span>
+          <v-row class="justify-center hidden-md-and-up">
+            <v-btn
+              color="primary"
+              fixed
+              fab
+              tile
+              width="150"
+              @click="agregarproducto()"
+              ><v-icon>mdi-cart-plus</v-icon>Agregar</v-btn
+            >
+          </v-row>
+          <v-row class="pb-10 justify-center text-center hidden-sm-and-down">
+            <span class="display-1"
+              ><b>{{ anuncio.titulo }}</b></span
+            >
+          </v-row>
+          <v-row class="pb-10 justify-center text-center hidden-md-and-up">
+            <h2>{{ anuncio.titulo }}</h2>
           </v-row>
           <v-row class="justify-center">
             <h1>${{ anuncio.precio }}</h1>
           </v-row>
-          <v-row class="justify-center pb-10">
+          <v-row class="justify-center pb-10 hidden-sm-and-down">
             <v-btn color="primary" @click="agregarproducto()"
-              ><v-icon>mdi-cart-plus</v-icon> Agregar Producto</v-btn
+              ><v-icon>mdi-cart-plus</v-icon> Agregar</v-btn
             >
           </v-row>
           <v-row>

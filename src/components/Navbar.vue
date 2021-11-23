@@ -82,7 +82,7 @@
             <v-icon>mdi-cart</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-btn plain @click="openCarrito">Carrito</v-btn>
+            <v-btn plain @click="openCarrito">Carrito: {{ total }}</v-btn>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>

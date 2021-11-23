@@ -254,6 +254,7 @@ export default {
       descripcion: "",
       precio: 0,
       hoy: new Date().toLocaleDateString(),
+      vendido: false,
 
       dialog: false,
       radioGroup: 1,
@@ -314,6 +315,7 @@ export default {
         (this.fileName = ""),
         (this.imagenes = []),
         (this.imagenesUrl = []);
+      this.vendido = false;
       this.borrado = false;
 
       // cerrar ventana
@@ -345,6 +347,7 @@ export default {
         fecha: this.hoy,
         nid: this.nid,
         imagenes: this.imagenesUrl,
+        vendido: this.vendido,
       };
 
       db.collection("productos").add(newProduc);
