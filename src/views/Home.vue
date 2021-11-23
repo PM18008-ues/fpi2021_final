@@ -373,7 +373,7 @@
                   <h2 class="black--text">${{ producto.precio }}</h2>
                   <span>{{ producto.titulo }}</span>
                   <br />
-                  <span>Publicado: {{ producto.fecha }}</span>
+                  <span>{{ publicado(producto.fecha) }}</span>
                 </v-card-text>
               </v-card>
             </v-hover>
@@ -638,6 +638,8 @@
 
 <script>
 import { db } from "../db";
+import moment from "moment";
+moment.locale("es");
 
 export default {
   name: "Home",
@@ -693,6 +695,11 @@ export default {
   },
 
   methods: {
+    publicado(fecha) {
+      let text = moment(fecha).from(moment());
+      return text;
+    },
+
     tamPaginas(arreglo) {
       this.tamanio = 0;
       if (arreglo.length >= this.e1) {
@@ -886,11 +893,11 @@ export default {
           }
 
           if (new Date(a.fecha) < new Date(b.fecha)) {
-            return -1;
+            return 1;
           }
 
           if (new Date(a.fecha) > new Date(b.fecha)) {
-            return 1;
+            return -1;
           }
         });
         // fecha Des
@@ -901,11 +908,11 @@ export default {
           }
 
           if (new Date(a.fecha) < new Date(b.fecha)) {
-            return 1;
+            return -1;
           }
 
           if (new Date(a.fecha) > new Date(b.fecha)) {
-            return -1;
+            return 1;
           }
         });
       } else {
