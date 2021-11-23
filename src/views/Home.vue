@@ -373,7 +373,7 @@
                   <h2 class="black--text">${{ producto.precio }}</h2>
                   <span>{{ producto.titulo }}</span>
                   <br />
-                  <span>{{ producto.fecha }}</span>
+                  <span>Publicado: {{ producto.fecha }}</span>
                 </v-card-text>
               </v-card>
             </v-hover>
