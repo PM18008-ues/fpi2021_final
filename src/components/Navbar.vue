@@ -50,47 +50,53 @@
         ></v-badge
       >
     </v-app-bar>
-    <v-navigation-drawer v-model="drawer" app fixed temporary>
+    <v-navigation-drawer v-model="drawer" app fixed temporary color="primary">
       <v-list>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>mdi-cellphone-check</v-icon>
+            <v-icon color="white">mdi-cellphone-check</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-btn plain :to="'/'"><b>Tienda CellPhone</b></v-btn>
+            <v-btn plain :to="'/'" class="white--text"
+              ><b>Tienda CellPhone</b></v-btn
+            >
           </v-list-item-content>
         </v-list-item>
         <v-divider></v-divider>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>mdi-home</v-icon>
+            <v-icon color="white">mdi-home</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-btn plain :to="'/'">Inicio</v-btn>
+            <v-btn plain :to="'/'" class="white--text">Inicio</v-btn>
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>mdi-plus-circle</v-icon>
+            <v-icon color="white">mdi-plus-circle</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-btn plain @click="openModal">Nuevo Anuncio</v-btn>
+            <v-btn text @click="openModal" class="white--text"
+              >Nuevo Anuncio</v-btn
+            >
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>mdi-cart</v-icon>
+            <v-icon color="white">mdi-cart</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-btn plain @click="openCarrito">Carrito: {{ total }}</v-btn>
+            <v-btn text @click="openCarrito" class="white--text"
+              >Carrito: {{ total }}</v-btn
+            >
           </v-list-item-content>
         </v-list-item>
         <v-list-item>
           <v-list-item-icon>
-            <v-icon>mdi-poll</v-icon>
+            <v-icon color="white">mdi-poll</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-btn plain :to="'/'">Estadisticas</v-btn>
+            <v-btn plain :to="'/'" class="white--text">Estadisticas</v-btn>
           </v-list-item-content>
         </v-list-item>
       </v-list>
