@@ -635,13 +635,15 @@
         </v-list-item>
       </v-list>
     </v-navigation-drawer>
-
-    <v-footer padless absolute color="primary">
-      <v-col class="text-center white--text" cols="12">
-        FPI-2021 —
-        <strong>Portillo Merlos Melvin Ernesto PM18008</strong>
-      </v-col>
-    </v-footer>
+    <v-row class="pt-12">
+      <v-footer padless absolute color="primary">
+        <v-col class="text-center white--text" cols="12">
+          <strong>Elaborado por: Melvin Ernesto Portillo Merlos</strong>
+          <br />
+          <strong>Carnet: PM18008</strong>
+        </v-col>
+      </v-footer>
+    </v-row>
   </v-container>
 </template>
 
