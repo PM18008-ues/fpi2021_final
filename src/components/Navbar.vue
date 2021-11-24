@@ -177,6 +177,7 @@ export default {
     // borramos la cadena
     borrar() {
       this.cadena = "";
+      this.buscar();
     },
 
     // se cierra el mensaje al dar CLOSE

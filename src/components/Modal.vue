@@ -97,7 +97,11 @@
                     </v-text-field>
                   </v-row>
                   <v-row class="pb-1">
-                    <v-text-field style="max-width: 200px" solo v-model="modelo"
+                    <v-text-field
+                      style="max-width: 200px"
+                      :rules="rules"
+                      solo
+                      v-model="modelo"
                       ><label slot="prepend">Modelo:</label>
                     </v-text-field>
                   </v-row>
@@ -194,6 +198,7 @@
                 <v-textarea
                   solo
                   name="input-7-4"
+                  :rules="rules"
                   label="Descripcion del producto"
                   value=""
                   style="max-width: 70%"
@@ -220,7 +225,11 @@
               <v-row class="pt-4">
                 <v-col cols="5">
                   <v-row class="justify-center">
-                    <v-btn @click="agregar" color="primary" class="white--text"
+                    <v-btn
+                      @click="agregar"
+                      :disabled="blockBoton()"
+                      color="primary"
+                      class="white--text"
                       ><v-icon color="white">mdi-plus-circle</v-icon
                       >Agregar</v-btn
                     >
@@ -309,14 +318,14 @@ export default {
       nuevo: true,
       marca: "",
       modelo: "",
-      pantalla: null,
+      pantalla: "",
       sistema: "Android",
-      rom: 0,
-      ram: 0,
+      rom: "0",
+      ram: "0",
       vendedor: "",
       telefono: "",
       descripcion: "",
-      precio: 0,
+      precio: "0",
       vendido: false,
 
       dialog: false,
@@ -349,6 +358,36 @@ export default {
     };
   },
   methods: {
+    blockBoton() {
+      if (
+        this.titulo == "" ||
+        this.titulo.length < 3 ||
+        this.marca == "" ||
+        this.marca.length < 3 ||
+        this.modelo == "" ||
+        this.modelo.length < 3 ||
+        this.pantalla == "" ||
+        this.pantalla.length < 3 ||
+        this.rom == "" ||
+        this.ram == "" ||
+        this.ram == "0" ||
+        parseInt(this.ram) < 0 ||
+        this.rom == "0" ||
+        parseInt(this.rom) < 0 ||
+        this.vendedor == "" ||
+        this.vendedor.length < 3 ||
+        this.telefono == "" ||
+        this.telefono.length < 3 ||
+        this.descripcion == "" ||
+        this.descripcion.length < 3 ||
+        this.precio == "0" ||
+        this.precio.length < 3 ||
+        this.imagenesUrl.length == 0
+      ) {
+        return true;
+      }
+    },
+
     asignarNid() {
       if (this.productos.length === 0) {
         this.nid = 1;

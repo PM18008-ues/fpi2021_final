@@ -245,7 +245,7 @@
         <v-row>
           <!-- rango de precios -->
           <v-col lg="6" md="6" sm="6" xs="12">
-            <v-card flat color="transparent">
+            <v-card height="150">
               <v-card-title class="justify-center"
                 >($) Precios entre</v-card-title
               >
@@ -264,9 +264,10 @@
                           :value="range[0]"
                           class="mt-0 pt-0"
                           hide-details
+                          outlined
                           single-line
                           type="number"
-                          style="width: 60px"
+                          style="width: 80px"
                           @change="$set(range, 0, $event)"
                         >
                         </v-text-field>
@@ -276,9 +277,9 @@
                           :value="range[1]"
                           class="mt-0 pt-0"
                           hide-details
-                          single-line
+                          outlined
                           type="number"
-                          style="width: 60px"
+                          style="width: 80px"
                           @change="$set(range, 1, $event)"
                         >
                         </v-text-field>
