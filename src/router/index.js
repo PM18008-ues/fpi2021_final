@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import Home from '../views/Home.vue'
 import Anuncio from "../views/Anuncio.vue"
+import Estadisticas from "../views/Estadisticas.vue"
 
 
 Vue.use(VueRouter)
@@ -17,6 +18,12 @@ const routes = [
     path: '/anuncio/:id',
     name: 'Anuncio',
     component: Anuncio
+  },
+
+  {
+    path: '/Estadisticas',
+    name: 'Estadisticas',
+    component: Estadisticas
   },
 
   {

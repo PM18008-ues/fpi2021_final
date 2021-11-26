@@ -36,7 +36,9 @@
       <v-spacer class="hidden-sm-and-down"></v-spacer>
 
       <v-btn plain class="hidden-sm-and-down" :to="'/'">Inicio</v-btn>
-      <v-btn plain class="hidden-sm-and-down" :to="'/'">Estadisticas</v-btn>
+      <v-btn plain class="hidden-sm-and-down" :to="'/Estadisticas'"
+        >Estadisticas</v-btn
+      >
       <v-btn icon class="hidden-sm-and-down" @click="openModal"
         ><v-icon large>mdi-plus-circle</v-icon></v-btn
       >
@@ -96,7 +98,9 @@
             <v-icon color="white">mdi-poll</v-icon>
           </v-list-item-icon>
           <v-list-item-content>
-            <v-btn plain :to="'/'" class="white--text">Estadisticas</v-btn>
+            <v-btn plain :to="'/Estadisticas'" class="white--text"
+              >Estadisticas</v-btn
+            >
           </v-list-item-content>
         </v-list-item>
       </v-list>
